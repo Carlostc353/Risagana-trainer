@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'">
+  <title>Hiragana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div id="app">
+  <div class="drag-handle"></div>
+
+  <!-- Drawing screen -->
+  <div id="draw-screen" class="screen">
+    <div>
+      <div class="label">Draw the hiragana for</div>
+      <div id="romaji-prompt" class="romaji">ku</div>
+    </div>
+    <canvas id="drawing-canvas"></canvas>
+    <div class="btn-row">
+      <button id="clear-btn" class="btn btn-secondary">Clear ↺</button>
+      <button id="submit-btn" class="btn btn-primary">Reveal →</button>
+    </div>
+  </div>
+
+  <!-- Result screen -->
+  <div id="result-screen" class="screen hidden">
+    <div class="result-header">
+      <div id="romaji-result" class="romaji-small">ku</div>
+      <span id="hiragana-char" class="hiragana-char">く</span>
+    </div>
+    <div class="compare-hint">Compare with your drawing above</div>
+    <div class="btn-row">
+      <button id="missed-btn" class="btn btn-danger">Missed it ✗</button>
+      <button id="gotit-btn" class="btn btn-success">Got it ✓</button>
+    </div>
+    <div class="btn-row">
+      <button id="next-btn" class="btn btn-ghost">Skip →</button>
+    </div>
+    <div class="countdown-wrap">
+      <div class="countdown-bar">
+        <div id="countdown-fill" class="countdown-fill"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

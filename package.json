@@ -1,0 +1,48 @@
+{
+  "name": "hiragana-trainer",
+  "version": "1.0.0",
+  "description": "Learn hiragana through timed popups",
+  "author": "Hiragana Trainer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "set CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder --win"
+  },
+  "build": {
+    "appId": "com.hiragana.trainer",
+    "productName": "Hiragana Trainer",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**",
+      "renderer/**"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "publish": {
+      "provider": "github",
+      "releaseType": "release"
+    },
+    "win": {
+      "target": "nsis",
+      "artifactName": "Hiragana-Trainer-Setup-${version}.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Hiragana Trainer",
+      "runAfterFinish": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^26.8.1"
+  },
+  "allowScripts": {
+    "electron@29.4.6": true,
+    "electron-winstaller@5.4.0": true
+  }
+}
