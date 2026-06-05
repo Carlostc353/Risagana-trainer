@@ -27,7 +27,7 @@ A lightweight Windows desktop app that teaches you hiragana through timed drawin
 Download the latest installer from the [**Releases page**](../../releases/latest):
 
 ```
-Hiragana-Trainer-Setup-x.x.x.exe
+Risagana-Trainer-Setup-x.x.x.exe
 ```
 
 Run the `.exe` and follow the setup wizard. No Node.js required — everything is bundled.
@@ -37,8 +37,8 @@ Run the `.exe` and follow the setup wizard. No Node.js required — everything i
 ## Run from source
 
 ```bash
-git clone https://github.com/Carlostc353/hiragana-trainer.git
-cd hiragana-trainer
+git clone https://github.com/Carlostc353/Risagana-trainer.git
+cd Risagana-trainer
 npm install
 npm start
 ```
@@ -51,7 +51,7 @@ Requires [Node.js](https://nodejs.org) v18 or later.
 npm run build
 ```
 
-Produces `dist/Hiragana-Trainer-Setup-x.x.x.exe`. Bump the `"version"` field in `package.json` to change the version number.
+Produces `dist/Risagana-Trainer-Setup-x.x.x.exe`. Bump the `"version"` field in `package.json` to change the version number.
 
 ## Tech
 

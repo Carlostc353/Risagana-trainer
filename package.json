@@ -1,6 +1,6 @@
 {
   "name": "risagana-trainer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Learn hiragana through timed popups",
   "author": "Risagana Trainer",
   "main": "main.js",
@@ -45,5 +45,8 @@
   "allowScripts": {
     "electron@29.4.6": true,
     "electron-winstaller@5.4.0": true
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3"
   }
 }

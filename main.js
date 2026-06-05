@@ -1,5 +1,6 @@
-const { app, BrowserWindow, Tray, Menu, ipcMain, screen, nativeImage } = require('electron');
+const { app, BrowserWindow, Tray, Menu, ipcMain, screen, nativeImage, dialog } = require('electron');
 const path = require('path');
+const { autoUpdater } = require('electron-updater');
 
 // Prevent multiple instances
 if (!app.requestSingleInstanceLock()) {
@@ -25,6 +26,7 @@ app.whenReady().then(() => {
 
   setupTray();
   app.scheduler.start(app.store.getSettings().interval, showPopup);
+  if (app.isPackaged) setupAutoUpdater();
 });
 
 // Keep app alive when all windows close
@@ -155,3 +157,27 @@ ipcMain.handle('get-stats', () => {
 
   return { stats, total, practiced, totalShown, totalCorrect, worstChars };
 });
+
+function setupAutoUpdater() {
+  autoUpdater.autoDownload = false;
+  autoUpdater.logger = null;
+
+  autoUpdater.on('update-available', (info) => {
+    dialog.showMessageBox({
+      type: 'info',
+      title: 'Update Available',
+      message: `Risagana Trainer ${info.version} is available. Install now?`,
+      buttons: ['Yes', 'No'],
+      defaultId: 0,
+      cancelId: 1
+    }).then(({ response }) => {
+      if (response === 0) autoUpdater.downloadUpdate();
+    });
+  });
+
+  autoUpdater.on('update-downloaded', () => {
+    autoUpdater.quitAndInstall(false, true);
+  });
+
+  setTimeout(() => autoUpdater.checkForUpdates().catch(() => {}), 3000);
+}
