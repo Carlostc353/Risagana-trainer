@@ -53,8 +53,6 @@ npm run build
 
 Produces `dist/Hiragana-Trainer-Setup-x.x.x.exe`. Bump the `"version"` field in `package.json` to change the version number.
 
-> **First-time build on Windows:** See the note in [CLAUDE.md](CLAUDE.md) about the winCodeSign cache if the build fails with a symlink error.
-
 ## Tech
 
 - [Electron](https://www.electronjs.org/) — desktop shell
