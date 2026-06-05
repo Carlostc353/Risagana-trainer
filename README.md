@@ -1,4 +1,4 @@
-# Hiragana Trainer
+# Risagana Trainer
 
 A lightweight Windows desktop app that teaches you hiragana through timed drawing practice. A small floating popup appears on a schedule you set — you draw the character with your mouse, reveal the answer, and self-evaluate.
 

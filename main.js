@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu, ipcMain, screen } = require('electron');
+const { app, BrowserWindow, Tray, Menu, ipcMain, screen, nativeImage } = require('electron');
 const path = require('path');
 
 // Prevent multiple instances
@@ -14,12 +14,11 @@ const VALID_INTERVALS = new Set([2, 5, 10, 20]);
 let tray = null;
 let popupWin = null;
 let settingsWin = null;
-let Store, Scheduler, createTrayIcon;
+let Store, Scheduler;
 
 app.whenReady().then(() => {
   Store = require('./src/store');
   Scheduler = require('./src/scheduler');
-  ({ createTrayIcon } = require('./src/iconGenerator'));
 
   app.store = new Store();
   app.scheduler = new Scheduler();
@@ -32,15 +31,15 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {});
 
 function setupTray() {
-  const icon = createTrayIcon();
+  const icon = nativeImage.createFromPath(path.join(__dirname, 'src', 'icon.png'));
   tray = new Tray(icon);
-  tray.setToolTip('Hiragana Trainer');
+  tray.setToolTip('Risagana Trainer');
   rebuildMenu();
 }
 
 function rebuildMenu() {
   const menu = Menu.buildFromTemplate([
-    { label: 'Hiragana Trainer', enabled: false },
+    { label: 'Risagana Trainer', enabled: false },
     { type: 'separator' },
     { label: 'Practice Now', click: showPopup },
     { label: 'Settings', click: openSettings },
@@ -101,7 +100,7 @@ function openSettings() {
     width: 400,
     height: 480,
     resizable: false,
-    title: 'Hiragana Trainer — Settings',
+    title: 'Risagana Trainer — Settings',
     backgroundColor: '#0f0e17',
     webPreferences: {
       nodeIntegration: false,

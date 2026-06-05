@@ -1,16 +1,17 @@
 {
-  "name": "hiragana-trainer",
-  "version": "1.0.0",
+  "name": "risagana-trainer",
+  "version": "1.0.1",
   "description": "Learn hiragana through timed popups",
-  "author": "Hiragana Trainer",
+  "author": "Risagana Trainer",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "set CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder --win"
   },
   "build": {
-    "appId": "com.hiragana.trainer",
-    "productName": "Hiragana Trainer",
+    "appId": "com.risagana.trainer",
+    "productName": "Risagana Trainer",
+    "icon": "build/icon.png",
     "files": [
       "main.js",
       "preload.js",
@@ -26,14 +27,14 @@
     },
     "win": {
       "target": "nsis",
-      "artifactName": "Hiragana-Trainer-Setup-${version}.exe"
+      "artifactName": "Risagana-Trainer-Setup-${version}.exe"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Hiragana Trainer",
+      "shortcutName": "Risagana Trainer",
       "runAfterFinish": true
     }
   },
