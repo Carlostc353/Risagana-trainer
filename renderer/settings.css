@@ -126,7 +126,7 @@ section { display: flex; flex-direction: column; gap: 10px; }
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: filter 0.12s, transform 0.12s;
+  transition: filter 0.15s, transform 0.15s;
 }
 
 .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
@@ -147,7 +147,7 @@ section { display: flex; flex-direction: column; gap: 10px; }
   font-size: 12px;
   color: var(--muted);
   padding: 6px 10px;
-  background: rgba(158, 61, 61, 0.12);
+  background: rgba(184, 50, 50, 0.12);
   border: 1px solid var(--danger);
   border-radius: 6px;
 }
