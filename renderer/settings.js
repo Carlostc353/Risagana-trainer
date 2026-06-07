@@ -1,16 +1,23 @@
 'use strict';
 
+let currentTotal = 46;
+
 async function init() {
   const [settings, statsData] = await Promise.all([
     window.api.getSettings(),
     window.api.getStats()
   ]);
 
-  // Set interval radio
+  currentTotal = statsData.total;
+
   const radio = document.querySelector(`input[name="interval"][value="${settings.interval}"]`);
   if (radio) radio.checked = true;
 
-  // Stats
+  const groups = settings.enabledGroups || ['basic'];
+  document.querySelectorAll('input[name="group"]').forEach(cb => {
+    cb.checked = groups.includes(cb.value);
+  });
+
   const accuracy = statsData.totalShown > 0
     ? Math.round((statsData.totalCorrect / statsData.totalShown) * 100) + '%'
     : '—';
@@ -18,7 +25,6 @@ async function init() {
     `${statsData.practiced} / ${statsData.total}`;
   document.getElementById('stat-accuracy').textContent = accuracy;
 
-  // Worst characters
   if (statsData.worstChars.length > 0) {
     document.getElementById('worst-section').classList.remove('hidden');
     const list = document.getElementById('worst-list');
@@ -31,16 +37,29 @@ async function init() {
   }
 }
 
-// Save
+document.querySelectorAll('input[name="group"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    document.getElementById('group-error').classList.add('hidden');
+  });
+});
+
 document.getElementById('save-btn').addEventListener('click', async () => {
   const checked = document.querySelector('input[name="interval"]:checked');
   if (!checked) return;
   const interval = parseInt(checked.value, 10);
-  await window.api.saveSettings({ interval });
+
+  const enabledGroups = [...document.querySelectorAll('input[name="group"]:checked')]
+    .map(cb => cb.value);
+
+  if (enabledGroups.length === 0) {
+    document.getElementById('group-error').classList.remove('hidden');
+    return;
+  }
+
+  await window.api.saveSettings({ interval, enabledGroups });
   window.close();
 });
 
-// Reset
 let resetPending = false;
 document.getElementById('reset-btn').addEventListener('click', async () => {
   if (!resetPending) {
@@ -52,8 +71,7 @@ document.getElementById('reset-btn').addEventListener('click', async () => {
   document.getElementById('reset-confirm').classList.remove('hidden');
   document.getElementById('reset-btn').disabled = true;
   document.getElementById('reset-btn').textContent = 'Reset all progress';
-  // Refresh stats display
-  document.getElementById('stat-practiced').textContent = '0 / 46';
+  document.getElementById('stat-practiced').textContent = `0 / ${currentTotal}`;
   document.getElementById('stat-accuracy').textContent = '—';
   document.getElementById('worst-section').classList.add('hidden');
   resetPending = false;

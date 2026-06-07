@@ -37,11 +37,145 @@
   <div class="divider"></div>
 
   <section>
+    <div class="section-label">Character sets</div>
+
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="basic">
+        <span class="group-label">Basic <span class="group-count">(46)</span></span>
+        <span class="group-sample">あいうえお…</span>
+      </label>
+    </div>
+
+    <div class="group-subheader">Dakuten</div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="dakuten_k">
+        <span class="group-label">K — ga–go <span class="group-count">(5)</span></span>
+        <span class="group-sample">が ぎ ぐ げ ご</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="dakuten_s">
+        <span class="group-label">S — za–zo <span class="group-count">(5)</span></span>
+        <span class="group-sample">ざ じ ず ぜ ぞ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="dakuten_t">
+        <span class="group-label">T — da–do <span class="group-count">(5)</span></span>
+        <span class="group-sample">だ ぢ づ で ど</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="dakuten_h">
+        <span class="group-label">H — ba–bo <span class="group-count">(5)</span></span>
+        <span class="group-sample">ば び ぶ べ ぼ</span>
+      </label>
+    </div>
+
+    <div class="group-subheader">Handakuten</div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="handakuten">
+        <span class="group-label">Handakuten — pa–po <span class="group-count">(5)</span></span>
+        <span class="group-sample">ぱ ぴ ぷ ぺ ぽ</span>
+      </label>
+    </div>
+
+    <div class="group-subheader">Compounds</div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_k">
+        <span class="group-label">K <span class="group-count">(3)</span></span>
+        <span class="group-sample">きゃ きゅ きょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_s">
+        <span class="group-label">S <span class="group-count">(3)</span></span>
+        <span class="group-sample">しゃ しゅ しょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_t">
+        <span class="group-label">T <span class="group-count">(3)</span></span>
+        <span class="group-sample">ちゃ ちゅ ちょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_n">
+        <span class="group-label">N <span class="group-count">(3)</span></span>
+        <span class="group-sample">にゃ にゅ にょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_h">
+        <span class="group-label">H <span class="group-count">(3)</span></span>
+        <span class="group-sample">ひゃ ひゅ ひょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_m">
+        <span class="group-label">M <span class="group-count">(3)</span></span>
+        <span class="group-sample">みゃ みゅ みょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_r">
+        <span class="group-label">R <span class="group-count">(3)</span></span>
+        <span class="group-sample">りゃ りゅ りょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_g">
+        <span class="group-label">G voiced <span class="group-count">(3)</span></span>
+        <span class="group-sample">ぎゃ ぎゅ ぎょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_j">
+        <span class="group-label">J <span class="group-count">(3)</span></span>
+        <span class="group-sample">じゃ じゅ じょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_b">
+        <span class="group-label">B <span class="group-count">(3)</span></span>
+        <span class="group-sample">びゃ びゅ びょ</span>
+      </label>
+    </div>
+    <div class="group-row">
+      <label class="group-check">
+        <input type="checkbox" name="group" value="compound_p">
+        <span class="group-label">P <span class="group-count">(3)</span></span>
+        <span class="group-sample">ぴゃ ぴゅ ぴょ</span>
+      </label>
+    </div>
+
+    <div id="group-error" class="group-error hidden">Select at least one group.</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
     <div class="section-label">Progress</div>
     <div class="stats-grid" id="stats-grid">
       <div class="stat-card">
         <div class="stat-value" id="stat-practiced">—</div>
-        <div class="stat-label">Chars practiced / 46</div>
+        <div class="stat-label">Chars practiced</div>
       </div>
       <div class="stat-card">
         <div class="stat-value" id="stat-accuracy">—</div>

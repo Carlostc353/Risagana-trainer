@@ -151,3 +151,58 @@ section { display: flex; flex-direction: column; gap: 10px; }
   border: 1px solid var(--danger);
   border-radius: 6px;
 }
+
+.hidden { display: none !important; }
+
+html, body { overflow-y: auto; }
+
+.group-subheader {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.group-row { display: flex; align-items: center; }
+
+.group-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+  padding: 3px 0;
+}
+
+.group-check input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.group-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+}
+
+.group-count { color: var(--muted); font-weight: 400; }
+
+.group-sample {
+  font-family: 'Yu Gothic UI', 'Yu Gothic', 'Hiragino Kaku Gothic ProN',
+               'Meiryo', 'MS PGothic', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.group-error {
+  font-size: 12px;
+  color: var(--danger);
+  padding: 4px 0;
+}
