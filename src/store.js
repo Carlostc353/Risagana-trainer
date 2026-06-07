@@ -27,7 +27,7 @@ class Store {
           data.history = data.lastShown ? [data.lastShown] : [];
           delete data.lastShown;
         }
-        if (!data.settings.enabledGroups) {
+        if (data.settings && !data.settings.enabledGroups) {
           data.settings.enabledGroups = ['basic'];
         }
         return data;

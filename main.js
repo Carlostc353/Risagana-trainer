@@ -148,7 +148,7 @@ ipcMain.handle('get-stats', () => {
   const enabledGroups = app.store.getSettings().enabledGroups || ['basic'];
   const enabledChars = Object.assign({}, ...enabledGroups.map(k => GROUPS[k] || {}));
   const total = Object.keys(enabledChars).length;
-  const practiced = Object.keys(stats).length;
+  const practiced = Object.keys(stats).filter(k => enabledChars[k] !== undefined).length;
   const totalShown = Object.values(stats).reduce((a, s) => a + s.shown, 0);
   const totalCorrect = Object.values(stats).reduce((a, s) => a + s.correct, 0);
 
