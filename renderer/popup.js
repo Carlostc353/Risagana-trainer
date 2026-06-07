@@ -1,5 +1,7 @@
 'use strict';
 
+const SESSION_SIZE = 5;
+let sessionIndex = 0;
 let currentChar = null;
 let isDrawing = false;
 let lastX = 0, lastY = 0;
@@ -11,7 +13,6 @@ const ctx = canvas.getContext('2d');
 
 function resizeCanvas() {
   const rect = canvas.getBoundingClientRect();
-  // Preserve drawing when resizing (rare for a fixed window, but safe)
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   canvas.width = rect.width;
   canvas.height = rect.height;
@@ -26,10 +27,7 @@ function applyStyle() {
   ctx.lineJoin = 'round';
 }
 
-// Size canvas on first render
-window.addEventListener('DOMContentLoaded', () => {
-  resizeCanvas();
-});
+window.addEventListener('DOMContentLoaded', () => { resizeCanvas(); });
 
 // ── Drawing events ───────────────────────────────────────────────
 function getPos(e) {
@@ -46,7 +44,6 @@ canvas.addEventListener('mousedown', (e) => {
   lastX = x; lastY = y;
   ctx.beginPath();
   ctx.moveTo(x, y);
-  // Draw a dot for single clicks
   ctx.arc(x, y, 2, 0, Math.PI * 2);
   ctx.fillStyle = '#1a1a2e';
   ctx.fill();
@@ -67,7 +64,6 @@ canvas.addEventListener('mousemove', (e) => {
 canvas.addEventListener('mouseup', () => { isDrawing = false; ctx.beginPath(); });
 canvas.addEventListener('mouseleave', () => { isDrawing = false; ctx.beginPath(); });
 
-// Touch support
 canvas.addEventListener('touchstart', (e) => { e.preventDefault(); canvas.dispatchEvent(new MouseEvent('mousedown', { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY })); });
 canvas.addEventListener('touchmove', (e) => { e.preventDefault(); canvas.dispatchEvent(new MouseEvent('mousemove', { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY })); });
 canvas.addEventListener('touchend', (e) => { e.preventDefault(); canvas.dispatchEvent(new MouseEvent('mouseup')); });
@@ -85,7 +81,7 @@ function showResult() {
   rs.classList.remove('hidden');
   document.getElementById('romaji-result').textContent = currentChar.romaji;
   document.getElementById('hiragana-char').textContent = currentChar.hiragana;
-  startCountdown(6);
+  // No countdown here — advanceSession starts it only after the 5th evaluation
 }
 
 // ── Evaluation ───────────────────────────────────────────────────
@@ -96,35 +92,59 @@ async function evaluate(correct) {
   document.getElementById('gotit-btn').disabled = true;
   document.getElementById('missed-btn').disabled = true;
   await window.api.recordResult({ romaji: currentChar.romaji, correct });
-  // Close immediately after recording
   clearTimeout(closeTimer);
-  window.api.closePopup();
+  await advanceSession();
 }
 
-document.getElementById('next-btn').addEventListener('click', () => {
+document.getElementById('next-btn').addEventListener('click', async () => {
   clearTimeout(closeTimer);
-  window.api.closePopup();
+  if (currentChar) await window.api.skipCharacter({ romaji: currentChar.romaji });
+  await advanceSession();
 });
+
+// ── Session state machine ─────────────────────────────────────────
+function updateProgress() {
+  document.getElementById('session-progress').textContent =
+    `${sessionIndex + 1} / ${SESSION_SIZE}`;
+}
+
+async function advanceSession() {
+  if (sessionIndex < SESSION_SIZE - 1) {
+    sessionIndex++;
+    updateProgress();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    currentChar = await window.api.getCharacter();
+    document.getElementById('romaji-prompt').textContent = currentChar.romaji;
+    document.getElementById('draw-screen').classList.remove('hidden');
+    document.getElementById('result-screen').classList.add('hidden');
+    document.getElementById('gotit-btn').disabled = false;
+    document.getElementById('missed-btn').disabled = false;
+    document.getElementById('next-btn').disabled = false;
+  } else {
+    document.getElementById('gotit-btn').disabled = true;
+    document.getElementById('missed-btn').disabled = true;
+    document.getElementById('next-btn').disabled = true;
+    startCountdown(6);
+  }
+}
 
 // ── Countdown ────────────────────────────────────────────────────
 function startCountdown(seconds) {
   const fill = document.getElementById('countdown-fill');
   fill.style.transition = 'none';
   fill.style.width = '100%';
-
-  // Force reflow then animate
   void fill.offsetWidth;
   fill.style.transition = `width ${seconds}s linear`;
   fill.style.width = '0%';
-
   closeTimer = setTimeout(() => window.api.closePopup(), seconds * 1000);
 }
 
 // ── Init ─────────────────────────────────────────────────────────
 async function init() {
+  sessionIndex = 0;
+  updateProgress();
   currentChar = await window.api.getCharacter();
   document.getElementById('romaji-prompt').textContent = currentChar.romaji;
-  // Wait for layout before sizing canvas
   requestAnimationFrame(() => resizeCanvas());
 }
 
