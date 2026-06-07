@@ -28,12 +28,19 @@ async function init() {
   if (statsData.worstChars.length > 0) {
     document.getElementById('worst-section').classList.remove('hidden');
     const list = document.getElementById('worst-list');
-    list.innerHTML = statsData.worstChars.map(({ romaji, missRate }) => `
-      <div class="worst-item">
-        <span class="romaji">${romaji}</span>
-        <span class="miss-pct">${Math.round(missRate * 100)}% miss</span>
-      </div>
-    `).join('');
+    list.innerHTML = '';
+    statsData.worstChars.forEach(({ romaji, missRate }) => {
+      const item = document.createElement('div');
+      item.className = 'worst-item';
+      const r = document.createElement('span');
+      r.className = 'romaji';
+      r.textContent = romaji;
+      const m = document.createElement('span');
+      m.className = 'miss-pct';
+      m.textContent = `${Math.round(missRate * 100)}% miss`;
+      item.append(r, m);
+      list.appendChild(item);
+    });
   }
 }
 
