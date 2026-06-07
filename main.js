@@ -128,6 +128,11 @@ ipcMain.handle('record-result', (_, { romaji, correct }) => {
   app.store.recordResult(romaji, Boolean(correct));
 });
 
+ipcMain.handle('skip-character', (_, { romaji }) => {
+  if (!VALID_ROMAJI.has(romaji)) return;
+  app.store.recordSkip(romaji);
+});
+
 ipcMain.handle('close-popup', () => {
   if (popupWin) popupWin.close();
 });
