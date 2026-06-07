@@ -8,8 +8,9 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0);
 }
 
-const HIRAGANA = require('./src/hiragana');
-const VALID_ROMAJI = new Set(Object.keys(HIRAGANA));
+const GROUPS = require('./src/hiragana');
+const ALL_CHARS = Object.assign({}, ...Object.values(GROUPS));
+const VALID_ROMAJI = new Set(Object.keys(ALL_CHARS));
 const VALID_INTERVALS = new Set([2, 5, 10, 20]);
 
 let tray = null;
@@ -144,7 +145,9 @@ ipcMain.handle('reset-stats', () => app.store.resetStats());
 
 ipcMain.handle('get-stats', () => {
   const stats = app.store.getStats();
-  const total = VALID_ROMAJI.size;
+  const enabledGroups = app.store.getSettings().enabledGroups || ['basic'];
+  const enabledChars = Object.assign({}, ...enabledGroups.map(k => GROUPS[k] || {}));
+  const total = Object.keys(enabledChars).length;
   const practiced = Object.keys(stats).length;
   const totalShown = Object.values(stats).reduce((a, s) => a + s.shown, 0);
   const totalCorrect = Object.values(stats).reduce((a, s) => a + s.correct, 0);
