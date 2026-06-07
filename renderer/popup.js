@@ -97,6 +97,7 @@ async function evaluate(correct) {
 }
 
 document.getElementById('next-btn').addEventListener('click', async () => {
+  document.getElementById('next-btn').disabled = true;
   clearTimeout(closeTimer);
   if (currentChar) await window.api.skipCharacter({ romaji: currentChar.romaji });
   await advanceSession();
