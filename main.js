@@ -12,6 +12,7 @@ const GROUPS = require('./src/hiragana');
 const ALL_CHARS = Object.assign({}, ...Object.values(GROUPS));
 const VALID_ROMAJI = new Set(Object.keys(ALL_CHARS));
 const VALID_INTERVALS = new Set([2, 5, 10, 20]);
+const VALID_GROUP_KEYS = new Set(Object.keys(GROUPS));
 
 let tray = null;
 let popupWin = null;
@@ -142,7 +143,13 @@ ipcMain.handle('get-settings', () => app.store.getSettings());
 ipcMain.handle('save-settings', (_, settings) => {
   const interval = Number(settings?.interval);
   if (!VALID_INTERVALS.has(interval)) return;
-  app.store.saveSettings({ interval });
+
+  const incoming = settings?.enabledGroups;
+  if (!Array.isArray(incoming) || incoming.length === 0) return;
+  const enabledGroups = incoming.filter(k => VALID_GROUP_KEYS.has(k));
+  if (enabledGroups.length === 0) return;
+
+  app.store.saveSettings({ interval, enabledGroups });
   app.scheduler.restart(interval, showPopup);
 });
 
