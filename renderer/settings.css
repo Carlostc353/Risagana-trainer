@@ -1,14 +1,14 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #0f0e17;
-  --surface: #1a1930;
-  --border: #2d2b4e;
-  --text: #fffffe;
-  --muted: #a7a9be;
-  --accent: #6359dc;
-  --success: #2d8f60;
-  --danger: #9e3d3d;
+  --bg:      #faf8f5;
+  --surface: #f0ebe3;
+  --border:  #ddd5c8;
+  --text:    #1c1208;
+  --muted:   #6b5a4a;
+  --accent:  #e8621a;
+  --success: #2a7a44;
+  --danger:  #b83232;
 }
 
 html, body {
@@ -70,7 +70,7 @@ section { display: flex; flex-direction: column; gap: 10px; }
 
 .radio-option input[type="radio"]:checked + label {
   border-color: var(--accent);
-  background: rgba(99, 89, 220, 0.18);
+  background: rgba(232, 98, 26, 0.18);
   color: var(--text);
   font-weight: 600;
 }
@@ -132,7 +132,7 @@ section { display: flex; flex-direction: column; gap: 10px; }
 .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 
-.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary { background: var(--accent); color: var(--text); }
 .btn-danger  { background: var(--danger); color: #fff; }
 
 .actions { display: flex; gap: 10px; }

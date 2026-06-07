@@ -79,7 +79,7 @@ function showPopup() {
     alwaysOnTop: true,
     resizable: false,
     skipTaskbar: true,
-    backgroundColor: '#0f0e17',
+    backgroundColor: '#faf8f5',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -105,7 +105,7 @@ function openSettings() {
     height: 480,
     resizable: false,
     title: 'Risagana Trainer — Settings',
-    backgroundColor: '#0f0e17',
+    backgroundColor: '#faf8f5',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
