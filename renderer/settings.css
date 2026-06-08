@@ -1,11 +1,11 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg:      #faf8f5;
-  --surface: #f0ebe3;
-  --border:  #ddd5c8;
-  --text:    #1c1208;
-  --muted:   #6b5a4a;
+  --bg:      #f5ede0;
+  --surface: rgba(255,252,248,0.85);
+  --border:  rgba(200,160,100,0.3);
+  --text:    #3d1f08;
+  --muted:   #7a5030;
   --accent:  #e8621a;
   --success: #2a7a44;
   --danger:  #b83232;
@@ -13,7 +13,8 @@
 
 html, body {
   height: 100%;
-  background: var(--bg);
+  background: linear-gradient(150deg, #f5ede0, #ede0cc) fixed;
+  background-attachment: fixed;
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
@@ -86,6 +87,8 @@ section { display: flex; flex-direction: column; gap: 10px; }
 
 .stat-card {
   background: var(--surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px 14px;
@@ -108,6 +111,8 @@ section { display: flex; flex-direction: column; gap: 10px; }
   align-items: center;
   padding: 5px 10px;
   background: var(--surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 6px;
   font-size: 13px;
 }
@@ -132,7 +137,7 @@ section { display: flex; flex-direction: column; gap: 10px; }
 .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 
-.btn-primary { background: var(--accent); color: var(--text); }
+.btn-primary { background: linear-gradient(135deg, #e8621a, #c44a08); color: var(--text); }
 .btn-danger  { background: var(--danger); color: #fff; }
 
 .actions { display: flex; gap: 10px; }

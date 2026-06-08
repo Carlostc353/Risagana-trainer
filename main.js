@@ -79,7 +79,7 @@ function showPopup() {
     alwaysOnTop: true,
     resizable: false,
     skipTaskbar: true,
-    backgroundColor: '#faf8f5',
+    backgroundColor: '#f0e6d3',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
