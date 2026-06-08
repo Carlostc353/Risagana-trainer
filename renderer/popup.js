@@ -27,7 +27,20 @@ function applyStyle() {
   ctx.lineJoin = 'round';
 }
 
-window.addEventListener('DOMContentLoaded', () => { resizeCanvas(); });
+function setCustomCursor() {
+  const img = new Image();
+  img.onload = () => {
+    const tmp = document.createElement('canvas');
+    tmp.width = 32;
+    tmp.height = 32;
+    tmp.getContext('2d').drawImage(img, 0, 0, 32, 32);
+    // pencil tip is at lower-left of the image; hotspot at (4, 28) in 32×32
+    canvas.style.cursor = `url("${tmp.toDataURL()}") 4 28, auto`;
+  };
+  img.src = '../src/pencil.png';
+}
+
+window.addEventListener('DOMContentLoaded', () => { resizeCanvas(); setCustomCursor(); });
 
 // ── Drawing events ───────────────────────────────────────────────
 function getPos(e) {
