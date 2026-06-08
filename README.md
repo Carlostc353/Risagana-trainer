@@ -4,13 +4,16 @@ A lightweight Windows desktop app that teaches you hiragana through timed drawin
 
 ## Features
 
+- **Session mode** — each popup runs 5 characters in a row with a progress indicator; the window stays open between characters
 - Timed popups every 2, 5, 10, or 20 minutes
 - Draw hiragana on a canvas with your mouse
-- Self-evaluate with **Got it ✓** / **Missed it ✗**
+- Self-evaluate with **Got it ✓** / **Missed it ✗** / **Skip**
 - Weighted practice — characters you miss appear more often
 - Per-character progress stats saved between sessions
 - Runs silently in the system tray between popups
-- All 46 basic hiragana covered
+- **104 characters** across 17 groups — enable only what you want to practice:
+  - Basic (46), Dakuten K/S/T/H (5 each), Handakuten (5)
+  - Compounds K/S/T/N/H/M/R/G/J/B/P (3 each)
 
 ## Screenshots
 
