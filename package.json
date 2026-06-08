@@ -1,6 +1,6 @@
 {
   "name": "risagana-trainer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Learn hiragana through timed popups",
   "author": "Risagana Trainer",
   "main": "main.js",
