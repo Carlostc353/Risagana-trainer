@@ -13,6 +13,18 @@ const DEFAULT_DATA = {
   history: []
 };
 
+function buildPool(enabledGroups) {
+  const pool = {};
+  for (const k of enabledGroups) {
+    const group = GROUPS[k] || {};
+    const isKata = k.startsWith('kata_');
+    for (const [romaji, char] of Object.entries(group)) {
+      pool[isKata ? `kata_${romaji}` : romaji] = char;
+    }
+  }
+  return pool;
+}
+
 class Store {
   constructor() {
     this.dataPath = path.join(app.getPath('userData'), 'hiragana-data.json');
@@ -74,13 +86,13 @@ class Store {
 
   pickCharacter() {
     const enabledGroups = this.data.settings.enabledGroups || ['basic'];
-    const pool = Object.assign({}, ...enabledGroups.map(k => GROUPS[k] || {}));
+    const pool = buildPool(enabledGroups);
     const chars = Object.keys(pool);
 
     if (chars.length === 0) {
       const fallback = Object.keys(GROUPS.basic);
       const picked = fallback[Math.floor(Math.random() * fallback.length)];
-      return { romaji: picked, hiragana: GROUPS.basic[picked] };
+      return { romaji: picked, character: GROUPS.basic[picked], script: 'hiragana' };
     }
 
     const history = new Set(this.data.history || []);
@@ -110,8 +122,9 @@ class Store {
 
     this.data.history = [...(this.data.history || []), picked].slice(-HISTORY_SIZE);
     this._save();
-    return { romaji: picked, hiragana: pool[picked] };
+    const script = picked.startsWith('kata_') ? 'katakana' : 'hiragana';
+    return { romaji: picked, character: pool[picked], script };
   }
 }
 
-module.exports = Store;
+module.exports = { Store, buildPool };
