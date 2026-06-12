@@ -159,7 +159,7 @@ ipcMain.handle('reset-stats', () => app.store.resetStats());
 ipcMain.handle('get-stats', () => {
   const stats = app.store.getStats();
   const enabledGroups = app.store.getSettings().enabledGroups || ['basic'];
-  const enabledChars = Object.assign({}, ...enabledGroups.map(k => GROUPS[k] || {}));
+  const enabledChars = buildPool(enabledGroups);
   const total = Object.keys(enabledChars).length;
   const practiced = Object.keys(stats).filter(k => enabledChars[k] !== undefined).length;
   const totalShown = Object.values(stats).reduce((a, s) => a + s.shown, 0);
