@@ -162,3 +162,11 @@ html, body {
   background: linear-gradient(to right, #e8621a, #c44a08);
   transform-origin: left;
 }
+
+.script-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}

@@ -92,8 +92,8 @@ function showResult() {
   document.getElementById('draw-screen').classList.add('hidden');
   const rs = document.getElementById('result-screen');
   rs.classList.remove('hidden');
-  document.getElementById('romaji-result').textContent = currentChar.romaji;
-  document.getElementById('hiragana-char').textContent = currentChar.hiragana;
+  document.getElementById('romaji-result').textContent = currentChar.romaji.replace(/^kata_/, '');
+  document.getElementById('hiragana-char').textContent = currentChar.character;
   // No countdown here — advanceSession starts it only after the 5th evaluation
 }
 
@@ -128,7 +128,8 @@ async function advanceSession() {
     updateProgress();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     currentChar = await window.api.getCharacter();
-    document.getElementById('romaji-prompt').textContent = currentChar.romaji;
+    document.getElementById('romaji-prompt').textContent = currentChar.romaji.replace(/^kata_/, '');
+    document.getElementById('script-label').textContent = currentChar.script;
     document.getElementById('draw-screen').classList.remove('hidden');
     document.getElementById('result-screen').classList.add('hidden');
     document.getElementById('gotit-btn').disabled = false;
@@ -158,7 +159,8 @@ async function init() {
   sessionIndex = 0;
   updateProgress();
   currentChar = await window.api.getCharacter();
-  document.getElementById('romaji-prompt').textContent = currentChar.romaji;
+  document.getElementById('romaji-prompt').textContent = currentChar.romaji.replace(/^kata_/, '');
+  document.getElementById('script-label').textContent = currentChar.script;
   requestAnimationFrame(() => resizeCanvas());
 }
 
