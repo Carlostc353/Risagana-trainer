@@ -9,7 +9,8 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 const GROUPS = require('./src/hiragana');
-const ALL_CHARS = Object.assign({}, ...Object.values(GROUPS));
+const { buildPool } = require('./src/store');
+const ALL_CHARS = buildPool(Object.keys(GROUPS));
 const VALID_ROMAJI = new Set(Object.keys(ALL_CHARS));
 const VALID_INTERVALS = new Set([2, 5, 10, 20]);
 const VALID_GROUP_KEYS = new Set(Object.keys(GROUPS));
@@ -20,7 +21,7 @@ let settingsWin = null;
 let Store, Scheduler;
 
 app.whenReady().then(() => {
-  Store = require('./src/store');
+  ({ Store } = require('./src/store'));
   Scheduler = require('./src/scheduler');
 
   app.store = new Store();
@@ -166,7 +167,12 @@ ipcMain.handle('get-stats', () => {
 
   const worstChars = Object.entries(stats)
     .filter(([, s]) => s.shown >= 2)
-    .map(([romaji, s]) => ({ romaji, missRate: s.incorrect / s.shown }))
+    .map(([romaji, s]) => ({
+      romaji,
+      displayRomaji: romaji.replace(/^kata_/, ''),
+      character: ALL_CHARS[romaji] ?? '?',
+      missRate: s.incorrect / s.shown
+    }))
     .sort((a, b) => b.missRate - a.missRate)
     .slice(0, 5);
 
