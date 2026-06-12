@@ -1,19 +1,19 @@
 # Risagana Trainer
 
-A lightweight Windows desktop app that teaches you hiragana through timed drawing practice. A small floating popup appears on a schedule you set — you draw the character with your mouse, reveal the answer, and self-evaluate.
+A lightweight Windows desktop app that teaches you hiragana and katakana through timed drawing practice. A small floating popup appears on a schedule you set — you draw the character with your mouse, reveal the answer, and self-evaluate.
 
 ## Features
 
 - **Session mode** — each popup runs 5 characters in a row with a progress indicator; the window stays open between characters
 - Timed popups every 2, 5, 10, or 20 minutes
-- Draw hiragana on a canvas with your mouse
+- Draw hiragana or katakana on a canvas with your mouse — a script label tells you which
 - Self-evaluate with **Got it ✓** / **Missed it ✗** / **Skip**
 - Weighted practice — characters you miss appear more often
 - Per-character progress stats saved between sessions
 - Runs silently in the system tray between popups
-- **104 characters** across 17 groups — enable only what you want to practice:
-  - Basic (46), Dakuten K/S/T/H (5 each), Handakuten (5)
-  - Compounds K/S/T/N/H/M/R/G/J/B/P (3 each)
+- **208 characters** across 34 groups — mix hiragana and katakana freely, enable only what you want to practice:
+  - Hiragana: Basic (46), Dakuten K/S/T/H (5 each), Handakuten (5), Compounds K/S/T/N/H/M/R/G/J/B/P (3 each)
+  - Katakana: same 17 groups mirroring hiragana
 
 ## Screenshots
 
