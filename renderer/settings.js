@@ -29,16 +29,19 @@ async function init() {
     document.getElementById('worst-section').classList.remove('hidden');
     const list = document.getElementById('worst-list');
     list.innerHTML = '';
-    statsData.worstChars.forEach(({ romaji, missRate }) => {
+    statsData.worstChars.forEach(({ displayRomaji, character, missRate }) => {
       const item = document.createElement('div');
       item.className = 'worst-item';
       const r = document.createElement('span');
       r.className = 'romaji';
-      r.textContent = romaji;
+      r.textContent = displayRomaji;
+      const c = document.createElement('span');
+      c.className = 'worst-char';
+      c.textContent = character;
       const m = document.createElement('span');
       m.className = 'miss-pct';
       m.textContent = `${Math.round(missRate * 100)}% miss`;
-      item.append(r, m);
+      item.append(r, c, m);
       list.appendChild(item);
     });
   }

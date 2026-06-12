@@ -121,6 +121,13 @@ section { display: flex; flex-direction: column; gap: 10px; }
 
 .worst-item .miss-pct { color: var(--danger); font-weight: 600; font-size: 12px; }
 
+.worst-item .worst-char {
+  font-family: 'Yu Gothic UI', 'Yu Gothic', 'Hiragino Kaku Gothic ProN',
+               'Meiryo', 'MS PGothic', sans-serif;
+  font-size: 16px;
+  color: var(--text);
+}
+
 .no-data { color: var(--muted); font-size: 13px; font-style: italic; }
 
 /* Buttons */
