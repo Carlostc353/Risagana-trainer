@@ -135,7 +135,7 @@ html, body {
 
 .romaji-small { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
 
-.hiragana-char {
+.kana-char {
   font-family: 'Noto Sans JP', 'Yu Gothic UI', 'Yu Gothic', 'Hiragino Kaku Gothic ProN',
                'Meiryo', 'MS PGothic', sans-serif;
   font-size: 110px;

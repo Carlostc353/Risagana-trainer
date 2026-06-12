@@ -93,7 +93,7 @@ function showResult() {
   const rs = document.getElementById('result-screen');
   rs.classList.remove('hidden');
   document.getElementById('romaji-result').textContent = currentChar.romaji.replace(/^kata_/, '');
-  document.getElementById('hiragana-char').textContent = currentChar.character;
+  document.getElementById('kana-char').textContent = currentChar.character;
   // No countdown here — advanceSession starts it only after the 5th evaluation
 }
 
