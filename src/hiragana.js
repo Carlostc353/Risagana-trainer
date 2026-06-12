@@ -27,5 +27,35 @@ module.exports = {
   compound_g: { 'gya': 'ぎゃ', 'gyu': 'ぎゅ', 'gyo': 'ぎょ' },
   compound_j: { 'ja': 'じゃ', 'ju': 'じゅ', 'jo': 'じょ' },
   compound_b: { 'bya': 'びゃ', 'byu': 'びゅ', 'byo': 'びょ' },
-  compound_p: { 'pya': 'ぴゃ', 'pyu': 'ぴゅ', 'pyo': 'ぴょ' }
+  compound_p: { 'pya': 'ぴゃ', 'pyu': 'ぴゅ', 'pyo': 'ぴょ' },
+
+  kata_basic: {
+    'a': 'ア', 'i': 'イ', 'u': 'ウ', 'e': 'エ', 'o': 'オ',
+    'ka': 'カ', 'ki': 'キ', 'ku': 'ク', 'ke': 'ケ', 'ko': 'コ',
+    'sa': 'サ', 'shi': 'シ', 'su': 'ス', 'se': 'セ', 'so': 'ソ',
+    'ta': 'タ', 'chi': 'チ', 'tsu': 'ツ', 'te': 'テ', 'to': 'ト',
+    'na': 'ナ', 'ni': 'ニ', 'nu': 'ヌ', 'ne': 'ネ', 'no': 'ノ',
+    'ha': 'ハ', 'hi': 'ヒ', 'fu': 'フ', 'he': 'ヘ', 'ho': 'ホ',
+    'ma': 'マ', 'mi': 'ミ', 'mu': 'ム', 'me': 'メ', 'mo': 'モ',
+    'ya': 'ヤ', 'yu': 'ユ', 'yo': 'ヨ',
+    'ra': 'ラ', 'ri': 'リ', 'ru': 'ル', 're': 'レ', 'ro': 'ロ',
+    'wa': 'ワ', 'wo': 'ヲ',
+    'n': 'ン'
+  },
+  kata_dakuten_k:  { 'ga': 'ガ', 'gi': 'ギ', 'gu': 'グ', 'ge': 'ゲ', 'go': 'ゴ' },
+  kata_dakuten_s:  { 'za': 'ザ', 'ji': 'ジ', 'zu': 'ズ', 'ze': 'ゼ', 'zo': 'ゾ' },
+  kata_dakuten_t:  { 'da': 'ダ', 'di': 'ヂ', 'du': 'ヅ', 'de': 'デ', 'do': 'ド' },
+  kata_dakuten_h:  { 'ba': 'バ', 'bi': 'ビ', 'bu': 'ブ', 'be': 'ベ', 'bo': 'ボ' },
+  kata_handakuten: { 'pa': 'パ', 'pi': 'ピ', 'pu': 'プ', 'pe': 'ペ', 'po': 'ポ' },
+  kata_compound_k: { 'kya': 'キャ', 'kyu': 'キュ', 'kyo': 'キョ' },
+  kata_compound_s: { 'sha': 'シャ', 'shu': 'シュ', 'sho': 'ショ' },
+  kata_compound_t: { 'cha': 'チャ', 'chu': 'チュ', 'cho': 'チョ' },
+  kata_compound_n: { 'nya': 'ニャ', 'nyu': 'ニュ', 'nyo': 'ニョ' },
+  kata_compound_h: { 'hya': 'ヒャ', 'hyu': 'ヒュ', 'hyo': 'ヒョ' },
+  kata_compound_m: { 'mya': 'ミャ', 'myu': 'ミュ', 'myo': 'ミョ' },
+  kata_compound_r: { 'rya': 'リャ', 'ryu': 'リュ', 'ryo': 'リョ' },
+  kata_compound_g: { 'gya': 'ギャ', 'gyu': 'ギュ', 'gyo': 'ギョ' },
+  kata_compound_j: { 'ja': 'ジャ', 'ju': 'ジュ', 'jo': 'ジョ' },
+  kata_compound_b: { 'bya': 'ビャ', 'byu': 'ビュ', 'byo': 'ビョ' },
+  kata_compound_p: { 'pya': 'ピャ', 'pyu': 'ピュ', 'pyo': 'ピョ' }
 };
